@@ -428,6 +428,64 @@ header {
   text-align: right;
 }
 
+/* Contenido Markdown dentro de burbujas del agente (tablas, listas, enlaces) */
+.markdown-content {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.markdown-content > *:first-child {
+  margin-top: 0;
+}
+.markdown-content > *:last-child {
+  margin-bottom: 0;
+}
+.markdown-content p {
+  margin: 0 0 10px;
+}
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0 0 10px;
+  padding-left: 20px;
+}
+.markdown-content li {
+  margin-bottom: 4px;
+}
+.markdown-content strong {
+  font-weight: 700;
+}
+.markdown-content a {
+  color: var(--azul);
+  text-decoration: underline;
+}
+.markdown-content code {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 8px 0 12px;
+  font-size: 13px;
+}
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--borde);
+  padding: 6px 10px;
+  text-align: left;
+}
+.markdown-content th {
+  background: var(--fondo);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.markdown-content tr:nth-child(even) td {
+  background: var(--fondo);
+}
+
 .typing-row {
   display: flex;
   gap: 10px;
