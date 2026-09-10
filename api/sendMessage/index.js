@@ -75,6 +75,7 @@ module.exports = async function (context, req) {
     };
   } catch (err) {
     context.log.error(`Error llamando al backend de "${agentId}":`, err.message);
+    context.log.error('Stack completo:', err.stack);
     context.res = {
       status: 502,
       headers: { 'Content-Type': 'application/json' },
