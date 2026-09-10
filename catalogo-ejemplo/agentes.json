@@ -1,0 +1,50 @@
+[
+  {
+    "id": "asistente-inventario",
+    "nombre": "Asistente de Inventario",
+    "backend": "foundry",
+    "sector": "Retail",
+    "descripcion": "Responde preguntas sobre stock, reposición y previsión de demanda cruzando datos de varios almacenes en lenguaje natural.",
+    "estado": "operativo",
+    "config": {
+      "endpoint": "",
+      "agentKeyRef": "AGENTE_INVENTARIO_KEY"
+    }
+  },
+  {
+    "id": "onboarding-clientes",
+    "nombre": "Onboarding de Clientes",
+    "backend": "copilot_studio",
+    "sector": "Banca",
+    "descripcion": "Guía a nuevos clientes en la apertura de cuenta, resuelve dudas de documentación y deriva a un agente humano si es necesario.",
+    "estado": "operativo",
+    "config": {
+      "endpoint": "",
+      "agentKeyRef": "AGENTE_ONBOARDING_KEY"
+    }
+  },
+  {
+    "id": "diagnostico-incidencias",
+    "nombre": "Diagnóstico de Incidencias",
+    "backend": "foundry",
+    "sector": "Manufactura",
+    "descripcion": "Analiza síntomas reportados sobre maquinaria industrial y sugiere causas probables consultando manuales técnicos.",
+    "estado": "mantenimiento",
+    "config": {
+      "endpoint": "",
+      "agentKeyRef": "AGENTE_DIAGNOSTICO_KEY"
+    }
+  },
+  {
+    "id": "tramitacion-siniestros",
+    "nombre": "Tramitación de Siniestros",
+    "backend": "copilot_studio",
+    "sector": "Seguros",
+    "descripcion": "Recoge los datos iniciales de un siniestro, valida cobertura de la póliza y genera el resumen para el gestor asignado.",
+    "estado": "operativo",
+    "config": {
+      "endpoint": "",
+      "agentKeyRef": "AGENTE_SINIESTROS_KEY"
+    }
+  }
+]

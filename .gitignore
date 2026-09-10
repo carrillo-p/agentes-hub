@@ -1,0 +1,12 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend / Azure Functions
+api/node_modules/
+api/local.settings.json
+
+# Editor / OS
+
+.DS_Store
+*.log

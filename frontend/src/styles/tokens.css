@@ -1,0 +1,57 @@
+/* ============================================================
+   TOKENS DE MARCA — hub de agentes
+   Paleta e identidad definida en la fase de diseño visual.
+   Cambiar aquí se propaga a toda la app.
+   ============================================================ */
+
+:root {
+  /* Marca */
+  --azul: #0000D0;
+  --azul-hover: #0000A8;
+  --magenta: #FF3184;
+  --negro: #000000;
+  --blanco: #FFFFFF;
+
+  /* Neutros derivados (misma familia que el azul, no gris genérico) */
+  --fondo: #F3F4F8;
+  --fondo-card: #FFFFFF;
+  --borde: #DBDCE8;
+  --texto-secundario: #6B6E85;
+
+  /* Estado */
+  --estado-ok: #16B364;
+  --estado-mantenimiento: #E8A317;
+  --estado-error: #E8384F;
+
+  /* Tipografía */
+  --font-display: 'Metropolis', Arial, sans-serif;
+  --font-body: Arial, 'Helvetica Neue', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  background: var(--fondo);
+  font-family: var(--font-body);
+  color: var(--negro);
+}
+
+/* Foco visible accesible en toda la app */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

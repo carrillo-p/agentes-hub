@@ -1,0 +1,35 @@
+# azure-pipelines.yml
+#
+# Build + deploy automático del hub de agentes a Azure Static Web Apps.
+# Se dispara con cada push a main. Requiere crear en Azure DevOps una
+# variable secreta "AZURE_STATIC_WEB_APPS_API_TOKEN" con el "deployment
+# token" que se obtiene desde el recurso Static Web App en Azure Portal
+# (Overview → Manage deployment token).
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Usar Node.js 20'
+
+  - script: |
+      cd frontend
+      npm ci
+      npm run build
+    displayName: 'Instalar dependencias y compilar el frontend'
+
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: 'frontend'
+      output_location: 'dist'
+      api_location: 'api'
+      azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
+    displayName: 'Desplegar a Azure Static Web Apps'
