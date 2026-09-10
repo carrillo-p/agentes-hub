@@ -36,6 +36,36 @@ export default function ChatView({ agente, onVolver }) {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [mensajes, streamingTexto, escribiendo]);
 
+  // Mensaje de bienvenida automático: al abrir el chat, se pide al agente
+  // real que se presente, sin mostrar ese prompt inicial como si lo hubiera
+  // escrito la persona (queda como si el agente hablara primero).
+  useEffect(() => {
+    pedirBienvenida();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function pedirBienvenida() {
+    setEscribiendo(true);
+    try {
+      const respuesta = await sendMessage(
+        agente.id,
+        'Preséntate brevemente y explica en pocas frases qué puedes hacer y cómo puedo empezar a usarte.',
+        sessionId
+      );
+      setUltimoPayload(respuesta.raw ?? respuesta);
+      setEscribiendo(false);
+      reproducirTypewriter(respuesta.text, () => {
+        setMensajes((prev) => [...prev, { role: 'agent', text: respuesta.text, timestamp: horaActual() }]);
+        setStreamingTexto(null);
+      });
+    } catch (err) {
+      setEscribiendo(false);
+      // Si falla la bienvenida (p.ej. backend aún no configurado), no se
+      // bloquea el chat: la persona simplemente puede escribir su propio
+      // primer mensaje sin que se le muestre error de bienvenida.
+    }
+  }
+
   function reiniciarConversacion() {
     clearInterval(typewriterRef.current);
     setMensajes([]);
@@ -44,6 +74,9 @@ export default function ChatView({ agente, onVolver }) {
     setError(null);
     setUltimoPayload(null);
     setSessionId(nuevaSessionId());
+    // Pequeño retraso para que el nuevo sessionId ya esté aplicado antes
+    // de pedir la bienvenida de nuevo.
+    setTimeout(() => pedirBienvenida(), 0);
   }
 
   function reproducirTypewriter(textoCompleto, onFin) {
@@ -131,12 +164,6 @@ export default function ChatView({ agente, onVolver }) {
       </div>
 
       <div className="messages" ref={scrollRef}>
-        {mensajes.length === 0 && !escribiendo && streamingTexto === null && (
-          <div className="mensaje-estado sutil">
-            Escribe un mensaje para empezar la conversación con {agente.nombre}.
-          </div>
-        )}
-
         {mensajes.map((m, idx) => (
           <MessageBubble key={idx} role={m.role} text={m.text} timestamp={m.timestamp} />
         ))}
