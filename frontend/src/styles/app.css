@@ -255,6 +255,60 @@ header {
 }
 
 /* ============================================================
+   MINI-DASHBOARD (resumen inicial del agente)
+   ============================================================ */
+
+.agent-dashboard {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--azul);
+  padding: 16px 16px 12px;
+  margin-bottom: 4px;
+  max-width: 90%;
+  align-self: flex-start;
+}
+.agent-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.agent-dashboard-grid.paneles-1 {
+  grid-template-columns: 1fr;
+}
+.agent-dashboard-grid.paneles-3 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-panel {
+  min-width: 0;
+}
+.dashboard-panel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12.5px;
+  margin-bottom: 4px;
+  color: var(--negro);
+}
+
+.dashboard-panel-kpi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--fondo);
+  border-left: 3px solid var(--magenta);
+  padding: 14px 16px;
+  min-height: 140px;
+}
+.dashboard-kpi-valor {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--azul);
+}
+
+/* ============================================================
    CHAT
    ============================================================ */
 
